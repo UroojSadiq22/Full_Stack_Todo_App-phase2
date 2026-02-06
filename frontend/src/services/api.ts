@@ -51,24 +51,24 @@ export const todoAPI = {
     if (offset) params.append('offset', offset.toString());
 
     const queryString = params.toString();
-    const url = queryString ? `/todos?${queryString}` : '/todos';
+    const url = queryString ? `/todos/?${queryString}` : '/todos/';
 
     return api.get<Todo[]>(url);
   },
 
   // Create a new todo
   createTodo: (todo: TodoCreate): Promise<AxiosResponse<Todo>> => {
-    return api.post<Todo>('/todos', todo);
+    return api.post<Todo>('/todos/', todo);
   },
 
   // Get a specific todo by ID
   getTodo: (id: string): Promise<AxiosResponse<Todo>> => {
-    return api.get<Todo>(`/todos/${id}`);
+    return api.get<Todo>(`/todos/${id}/`);
   },
 
   // Update a specific todo
   updateTodo: (id: string, todo: TodoUpdate): Promise<AxiosResponse<Todo>> => {
-    return api.put<Todo>(`/todos/${id}`, todo);
+    return api.put<Todo>(`/todos/${id}/`, todo);
   },
 
   // Toggle completion status of a todo
@@ -78,7 +78,7 @@ export const todoAPI = {
 
   // Delete a specific todo
   deleteTodo: (id: string): Promise<AxiosResponse<void>> => {
-    return api.delete<void>(`/todos/${id}`);
+    return api.delete<void>(`/todos/${id}/`);
   },
 };
 
